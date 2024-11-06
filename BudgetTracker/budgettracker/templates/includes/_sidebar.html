@@ -1,0 +1,62 @@
+{% load static %}
+
+<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="door-closed" viewBox="0 0 16 16">
+        <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
+        <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
+    </symbol>
+</svg>
+
+<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+    <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu"
+         aria-labelledby="sidebarMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="sidebarMenuLabel">Budget Tracker</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+
+            <ul class="nav flex-column">
+                {% for main_sidebar_item in sidebar_main %}
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 active"
+                       aria-current="page"
+                       href="{% url main_sidebar_item.url_name %}">
+                        {{ main_sidebar_item.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase">
+                <span>Summary</span>
+                <a class="link-secondary" href="#" aria-label="Add a new report">
+                </a>
+            </h6>
+            <ul class="nav flex-column mb-auto">
+                {% for sidebar_summary_item in sidebar_summary %}
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2" href="{% url sidebar_summary_item.url_name %}">
+                        {{ sidebar_summary_item.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <hr class="my-3">
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                        <svg class="bi">
+                            <use xlink:href="#door-closed"/>
+                        </svg>
+                        Sign out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
