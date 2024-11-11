@@ -13,7 +13,11 @@
                 <div class="card-title py-3">
                     <h4>Register a new account</h4>
                 </div>
-                <form action="" method="post">
+
+                <form action="{% url 'auth:register' %}" method="post">
+                    {% csrf_token %}
+
+                    {% include 'includes/_messages.html' %}
                     <div class="form-group py-2">
                         <input type="text"
                                name="username"
@@ -42,7 +46,7 @@
                     </div>
 
                     <div class="w-100 btn-group mt-2">
-                        <input type="submit" value="Register" class="btn btn-block btn-primary " />
+                        <input type="submit" value="Register" class="btn btn-block btn-primary "/>
                     </div>
                 </form>
             </div>
