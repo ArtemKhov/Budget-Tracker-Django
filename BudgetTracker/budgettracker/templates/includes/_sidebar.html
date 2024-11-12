@@ -49,12 +49,13 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
+                    <form class="nav-link d-flex align-items-center" action="{% url 'auth:logout' %}" method="post">
+                        {% csrf_token %}
                         <svg class="bi">
                             <use xlink:href="#door-closed"/>
                         </svg>
-                        Sign out
-                    </a>
+                        <input class="nav-link no-padding" type="submit" value="Sign out">
+                    </form>
                 </li>
             </ul>
         </div>

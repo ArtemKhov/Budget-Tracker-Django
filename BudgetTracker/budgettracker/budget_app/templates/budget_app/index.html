@@ -3,13 +3,18 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<h1>Expenses List</h1>
-<ul class="list-group">
-    <li class="list-group-item">Test</li>
-    <li class="list-group-item">Test</li>
-    <li class="list-group-item">Test</li>
-    <li class="list-group-item">Test</li>
-    <li class="list-group-item">Test</li>
-    <li class="list-group-item">Test</li>
-</ul>
+<div class="container">
+    {% include 'includes/_messages.html' %}
+
+    <h1>Expenses List</h1>
+    <ul class="list-group">
+        <li class="w-100 list-group-item">Test</li>
+        <li class="list-group-item">Test</li>
+        <li class="list-group-item">Test</li>
+        <li class="list-group-item">Test</li>
+        <li class="list-group-item">Test</li>
+        <li class="list-group-item">Test</li>
+    </ul>
+</div>
+
 {% endblock %}

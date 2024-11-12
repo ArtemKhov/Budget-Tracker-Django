@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 sidebar_main = [{'title': "Dashboard", 'url_name': 'home'},
         {'title': "Expenses", 'url_name': 'home'},
@@ -9,7 +10,7 @@ sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'home'},
         {'title': "Income Summary", 'url_name': 'home'},
 ]
 
-
+@login_required(login_url='auth:login')
 def index(request):
     context = {
         'title': 'Budget Tracker',

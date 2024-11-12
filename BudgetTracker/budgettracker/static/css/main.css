@@ -84,3 +84,7 @@
 .showPasswordToggle:hover {
     transform: scale(1.2);
 }
+
+.no-padding {
+    padding-left: 5px;
+}

@@ -1,9 +1,49 @@
 {% extends 'base_auth.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div class="card">
-    <div class="card-body">
-        <h1>Login</h1>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="card mt-5">
+            <div class="card-body">
+                <div class="card-title py-3">
+                    <h4>Login to account</h4>
+                </div>
+
+                <form action="{% url 'auth:login' %}" method="post">
+                    {% csrf_token %}
+
+                    {% include 'includes/_messages.html' %}
+                    <div class="form-group py-2">
+                        <input type="text"
+                               name="username"
+                               placeholder="Username"
+                               id="usernameField"
+                               class="form-control form-control-sm"
+                               value="{{ fieldValues.username }}"/>
+
+                    <div class="form-group py-3 mb-2">
+                        <input type="password"
+                               name="password"
+                               placeholder="Password"
+                               id="passwordField"
+                               class="form-control form-control-sm"/>
+                    </div>
+
+                    <div class="w-100 btn-group">
+                        <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn"/>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+<div class="col-md-4"></div>
+</div>
+
+<script src="{% static 'js/register.js' %}"></script>
 {% endblock %}
