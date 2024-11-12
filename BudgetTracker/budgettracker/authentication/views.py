@@ -68,7 +68,7 @@ class RegistrationView(View):
                 activate_url = f'http://{domain}{link}'
 
                 email_subject = 'Activate your account'
-                email_body = (f'Hi {user.username}. Please use this link to verify your account\n'
+                email_body = (f'Hi {user.username}. Please use this link to verify your account:\n'
                               f'{activate_url}')
                 email = EmailMessage(
                     email_subject,
@@ -86,4 +86,29 @@ class RegistrationView(View):
 
 class VerificationView(View):
     def get(self, request, uidb64, token):
-        return redirect('auth:login')
+        try:
+            id = force_str(urlsafe_base64_decode(uidb64))
+            user = User.objects.get(pk=id)
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            user = None
+
+        if user is not None and token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+
+            messages.success(request, 'Account activated successfully!')
+            return redirect('auth:login')
+        elif not token_generator.check_token(user, token):
+            messages.warning(request, 'User already activated')
+            return redirect('auth:login')
+        elif user.is_active:
+            return redirect('auth:login')
+        else:
+            messages.error(request, 'Activation link is invalid!')
+            return redirect('auth:login')
+
+
+class LoginView(View):
+    def get(self, request):
+        return render(request, 'authentication/login.html')
+
