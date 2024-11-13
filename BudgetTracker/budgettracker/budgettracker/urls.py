@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('budget_app.urls')),
     path('auth/', include('authentication.urls', namespace='auth')),
+    path('preferences/', include('userpreferences.urls')),
 ]

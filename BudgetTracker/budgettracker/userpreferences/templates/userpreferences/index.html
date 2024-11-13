@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-3 d-flex justify-content-start">
+    {% include 'includes/_messages.html' %}
+    <form action="{% url 'userpreferences' %}" method="post">
+        {% csrf_token %}
+
+        {% if user_preferences.currency %}
+            <h5>Preferred Currency: {{ user_preferences.currency }}</h5>
+        {% else %}
+            <h5>Choose preferred currency</h5>
+        {% endif %}
+        <hr>
+        <div class="input-group">
+            <select name="currency" class="form-select" id="inputGroupSelect04"
+                    aria-label="Example select with button addon">
+                {% if user_preferences.currency %}
+                    <option name="currency" selected value="{{ user_preferences.currency }}">{{ user_preferences.currency }}</option>
+                {% endif %}
+
+                {% for currency in currency_data %}
+                    <option name="currency" value="{{ currency.name }} - {{ currency.value }}">
+                        {{ currency.name }} - {{ currency.value }}
+                    </option>
+                {% endfor %}
+            </select>
+            <input class="btn btn-outline-info" type="submit" value="Save"/>
+        </div>
+    </form>
+</div>
+{% endblock %}

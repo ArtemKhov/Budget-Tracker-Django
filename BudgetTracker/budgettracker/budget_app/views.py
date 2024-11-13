@@ -1,29 +1,15 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-
-sidebar_main = [{'title': "Dashboard", 'url_name': 'home'},
-        {'title': "Expenses", 'url_name': 'home'},
-        {'title': "Income", 'url_name': 'home'},
-]
-
-sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'home'},
-        {'title': "Income Summary", 'url_name': 'home'},
-]
+from utils import data_mixin
 
 @login_required(login_url='auth:login')
 def index(request):
-    context = {
-        'title': 'Budget Tracker',
-        'sidebar_main': sidebar_main,
-        'sidebar_summary': sidebar_summary,
-    }
+    context = data_mixin.extra_context
+    context['title'] = 'Budget Tracker'
     return render(request, 'budget_app/index.html', context=context)
 
-
+@login_required(login_url='auth:login')
 def add_expense(request):
-    context = {
-        'title': 'Add Expense',
-        'sidebar_main': sidebar_main,
-        'sidebar_summary': sidebar_summary,
-    }
+    context = data_mixin.extra_context
+    context['title'] = 'Add Expenses'
     return render(request, 'budget_app/add_expense.html', context=context)

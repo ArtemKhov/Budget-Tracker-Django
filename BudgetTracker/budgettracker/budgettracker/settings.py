@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'budget_app.apps.BudgetAppConfig',
     'authentication.apps.AuthenticationConfig',
+    'userpreferences.apps.UserpreferencesConfig',
 ]
 
 MIDDLEWARE = [
