@@ -3,18 +3,48 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div class="container">
-    {% include 'includes/_messages.html' %}
+<div class="container mt-2 mb-2">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-10 breadcrumb-wrapper">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item"><a href="#">Expenses</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">My Expenses</li>
+                </ol>
+            </nav>
+        </div>
 
-    <h1>Expenses List</h1>
-    <ul class="list-group">
-        <li class="w-100 list-group-item">Test</li>
-        <li class="list-group-item">Test</li>
-        <li class="list-group-item">Test</li>
-        <li class="list-group-item">Test</li>
-        <li class="list-group-item">Test</li>
-        <li class="list-group-item">Test</li>
-    </ul>
+        <div class="col-md-2">
+            <a href="{% url 'add-expense' %}" class="btn btn-primary">Add Expense</a>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        {% include 'includes/_messages.html' %}
+        {% if expenses.count %}
+        <table class="table table-stripped table-hover">
+            <thead>
+            <tr>
+                <th>Amount (CURRENCY)</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user_expense in expenses %}
+            <tr>
+                <td>{{ user_expense.amount }}</td>
+                <td>{{ user_expense.description }}</td>
+                <td>{{ user_expense.category }}</td>
+                <td>{{ user_expense.date }}</td>
+                <td><a href="{% url 'edit-expense' user_expense.id %}" class="btn btn-info btn-sm">Edit</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
 </div>
-
 {% endblock %}

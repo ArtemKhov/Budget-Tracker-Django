@@ -4,20 +4,22 @@
 
 {% block content %}
 <div class="container">
-    <h2>Add Expense</h2>
+    <h2>Edit Expense</h2>
 </div>
 
 <div class="container mt-2">
-    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'home' %}">Expenses</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
-        </ol>
-    </nav>
+    <div class="col-md-10">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb mt-3">
+                <li class="breadcrumb-item"><a href="#">Expenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
+            </ol>
+        </nav>
+    </div>
 
     <div class="card">
         <div class="card-body">
-            <form action="{% url 'add-expense' %}" method="post">
+            <form action="{% url 'edit-expense' expense.id %}" method="post">
                 {% csrf_token %}
                 {% include 'includes/_messages.html' %}
 
@@ -27,13 +29,17 @@
                 </div>
                 <div class="form-group mt-3">
                     <label for="">Description*</label>
-                    <input type="text" class="form-control form-control-sm" name="description" value="{{ values.description }}">
+                    <input type="text" class="form-control form-control-sm" name="description"
+                           value="{{ values.description }}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="">Category</label>
                     <select class="form-select form-select-sm w-50" name="category">
+                        <option selected name="category" value="{{ values.category }}">{{ values.category }}</option>
+                        <hr>
+                        <hr>
                         {% for category in categories %}
-                            <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                        <option name="category" value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -42,10 +48,14 @@
                     <input type="date" class="form-control form-control-sm w-50" name="expense_date">
                 </div>
 
-                <input type="submit" value="Add Expense" class="btn btn-primary btn-primary-sm mt-4">
+                <div class="d-flex gap-2">
+                    <input type="submit" value="Update" class="btn btn-primary btn-primary-sm mt-4">
+                    <a href="{% url 'delete-expense' expense.id %}" class="btn btn-danger btn-danger-sm mt-4">Delete</a>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
 {% endblock %}
 
