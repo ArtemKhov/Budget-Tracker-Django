@@ -1,4 +1,4 @@
-from django.urls import path, reverse_lazy
+from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
 from . import views
