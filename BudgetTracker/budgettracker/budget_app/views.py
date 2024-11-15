@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 from .models import Category, Expense
 from utils import data_mixin
@@ -9,11 +10,15 @@ from utils import data_mixin
 def index(request):
     categories = Category.objects.all()
     expenses = Expense.objects.filter(owner=request.user)
+    paginator = Paginator(expenses, 5)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator, page_number)
 
     context = data_mixin.extra_context
     context['title'] = 'Budget Tracker'
     context['categories'] = categories
     context['expenses'] = expenses
+    context['page_obj'] = page_obj
     return render(request, 'budget_app/index.html', context=context)
 
 @login_required(login_url='auth:login')
@@ -40,6 +45,10 @@ def add_expense(request):
 
         if not description:
             messages.error(request, 'Description is required')
+            return render(request, 'budget_app/add_expense.html', context=context)
+
+        if not date:
+            messages.error(request, 'Date is required')
             return render(request, 'budget_app/add_expense.html', context=context)
 
         Expense.objects.create(owner=request.user,
@@ -77,6 +86,10 @@ def expense_edit(request, id):
             messages.error(request, 'Description is required')
             return render(request, 'budget_app/edit_expense.html', context=context)
 
+        if not date:
+            messages.error(request, 'Date is required')
+            return render(request, 'budget_app/add_expense.html', context=context)
+
         expense.owner = request.user
         expense.amount = amount
         expense.description = description
@@ -93,6 +106,8 @@ def delete_expense(request, id):
 
     messages.warning(request, 'Expense was deleted')
     return redirect('home')
+
+
 
 
 
