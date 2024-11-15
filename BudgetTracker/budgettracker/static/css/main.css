@@ -97,3 +97,7 @@
 .paginator-text {
     font-size: 15px;
 }
+
+.table-head {
+    cursor: pointer;
+}
