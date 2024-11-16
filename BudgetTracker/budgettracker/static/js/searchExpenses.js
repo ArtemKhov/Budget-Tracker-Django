@@ -14,7 +14,6 @@ searchField.addEventListener('keyup', (e)=>{
     if(searchValue.trim().length>0){
         paginationContainer.style.display = 'none';
         tbody.innerHTML = '';
-        console.log('searchValue', searchValue);
 
         fetch('/search-expenses/',{
         body: JSON.stringify({searchText: searchValue}),

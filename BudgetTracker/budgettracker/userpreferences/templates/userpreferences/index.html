@@ -3,8 +3,8 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+{% include 'includes/_messages.html' %}
 <div class="container mt-3 d-flex justify-content-start">
-    {% include 'includes/_messages.html' %}
     <form action="{% url 'userpreferences' %}" method="post">
         {% csrf_token %}
 

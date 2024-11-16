@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import JsonResponse
 
-from .models import Category, Expense
+from userpreferences.models import UserPreference
+from budget_app.models import Category, Expense
 from utils import data_mixin
 import json
 
@@ -16,11 +17,17 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page_number)
 
+    try:
+        currency = UserPreference.objects.get(user=request.user).currency
+    except UserPreference.DoesNotExist:
+        currency = 'Currency not selected'
+
     context = data_mixin.extra_context
     context['title'] = 'Budget Tracker'
     context['categories'] = categories
     context['expenses'] = expenses
     context['page_obj'] = page_obj
+    context['currency'] = currency
     return render(request, 'budget_app/index.html', context=context)
 
 @login_required(login_url='auth:login')

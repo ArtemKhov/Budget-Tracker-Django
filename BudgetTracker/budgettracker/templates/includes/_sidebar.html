@@ -69,7 +69,10 @@
                         <svg class="bi">
                             <use xlink:href="#door-closed"/>
                         </svg>
-                        <input class="nav-link no-padding" type="submit" value="Sign out">
+                        <input class="nav-link no-padding padding-sign-out" type="submit" value="Sign out">
+                        <span class="nav-link padding-username" href="">
+                            ({{request.user.username}})
+                        </span>
                     </form>
                 </li>
             </ul>
