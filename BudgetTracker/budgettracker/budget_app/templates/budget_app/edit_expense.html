@@ -44,8 +44,8 @@
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <label for="">Date of expense*</label>
-                    <input type="date" class="form-control form-control-sm w-50" name="expense_date">
+                    <label for="">Date of expense</label>
+                    <input type="date" class="form-control form-control-sm w-50" name="expense_date" value="{{ values.date|date:'Y-m-d' }}">
                 </div>
 
                 <div class="d-flex gap-2">
