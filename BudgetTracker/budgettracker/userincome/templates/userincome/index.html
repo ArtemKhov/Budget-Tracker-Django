@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-2 mb-2">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-10 breadcrumb-wrapper">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item"><a href="#">Income</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">My Income</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-2">
+            <a href="{% url 'add-income' %}" class="btn btn-primary">Add Income</a>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        {% include 'includes/_messages.html' %}
+        {% if income.count %}
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchField" placeholder="Search">
+                </div>
+            </div>
+        </div>
+
+        <div class="app-table">
+            <table class="table table-stripped table-hover">
+                <thead class="table-head">
+                <tr>
+                    <th>Amount ({{ currency }}) &#8595;</th>
+                    <th>Description &#8595;</th>
+                    <th>Source &#8595;</th>
+                    <th>Date &#8595;</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user_income in page_obj %}
+                <tr>
+                    <td>{{ user_income.amount }}</td>
+                    <td>{{ user_income.description }}</td>
+                    <td>{{ user_income.source }}</td>
+                    <td>{{ user_income.date }}</td>
+                    <td><a href="{% url 'edit-income' user_income.id %}" class="btn btn-info btn-sm">Edit</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <p class="no-results" style="display: none;">No results found</p>
+        <div class="table-output">
+            <table class="table table-stripped table-hover">
+                <thead class="table-head">
+                <tr>
+                    <th>Amount ({{ currency }}) &#8595;</th>
+                    <th>Description &#8595;</th>
+                    <th>Source &#8595;</th>
+                    <th>Date &#8595;</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="table-body">
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-container">
+            <div class="d-flex justify-content-between">
+                <div class="paginator-text">
+                    Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </div>
+
+                <ul class="pagination pagination-sm align-right float-right mr-auto">
+                    {% if page_obj.has_previous %}
+                    <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}>
+                        <a class="page-link" href="?page=1">&laquo;1</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/searchIncome.js' %}"></script>
+<script src="{% static 'js/table_sorting.js' %}"></script>
+{% endblock %}

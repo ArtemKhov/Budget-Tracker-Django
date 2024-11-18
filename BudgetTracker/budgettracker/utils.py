@@ -5,7 +5,7 @@ from django.conf import settings
 
 sidebar_main = [{'title': "Dashboard", 'url_name': 'home'},
         {'title': "Expenses", 'url_name': 'home'},
-        {'title': "Income", 'url_name': 'home'},
+        {'title': "Income", 'url_name': 'income'},
 ]
 
 sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'home'},

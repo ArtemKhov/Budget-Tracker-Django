@@ -4,22 +4,22 @@
 
 {% block content %}
 <div class="container">
-    <h2>Edit Expense</h2>
+    <h2>Edit Income</h2>
 </div>
 
 <div class="container mt-2">
     <div class="col-md-10">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb mt-3">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Expenses</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Expense</li>
+                <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Income</li>
             </ol>
         </nav>
     </div>
 
     <div class="card">
         <div class="card-body">
-            <form action="{% url 'edit-expense' expense.id %}" method="post">
+            <form action="{% url 'edit-income' income.id %}" method="post">
                 {% csrf_token %}
                 {% include 'includes/_messages.html' %}
 
@@ -33,24 +33,24 @@
                            value="{{ values.description }}">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="">Category</label>
-                    <select class="form-select form-select-sm w-50" name="category">
-                        <option selected name="category" value="{{ values.category }}">{{ values.category }}</option>
+                    <label for="">Source</label>
+                    <select class="form-select form-select-sm w-50" name="source">
+                        <option selected name="source" value="{{ values.source }}">{{ values.source }}</option>
                         <hr>
                         <hr>
-                        {% for category in categories %}
-                        <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                        {% for source in sources %}
+                        <option name="source" value="{{ source.name }}">{{ source.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group mt-3">
-                    <label for="">Date of expense</label>
-                    <input type="date" class="form-control form-control-sm w-50" name="expense_date" value="{{ values.date|date:'Y-m-d' }}">
+                    <label for="">Date of income</label>
+                    <input type="date" class="form-control form-control-sm w-50" name="income_date" value="{{ values.date|date:'Y-m-d' }}">
                 </div>
 
                 <div class="d-flex gap-2">
                     <input type="submit" value="Update" class="btn btn-primary btn-primary-sm mt-4">
-                    <a href="{% url 'delete-expense' expense.id %}" class="btn btn-danger btn-danger-sm mt-4">Delete</a>
+                    <a href="{% url 'delete-income' income.id %}" class="btn btn-danger btn-danger-sm mt-4">Delete</a>
                 </div>
             </form>
         </div>

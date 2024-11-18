@@ -6,4 +6,5 @@ urlpatterns = [
     path('', include('budget_app.urls')),
     path('auth/', include('authentication.urls', namespace='auth')),
     path('preferences/', include('userpreferences.urls')),
+    path('income/', include('userincome.urls')),
 ]
