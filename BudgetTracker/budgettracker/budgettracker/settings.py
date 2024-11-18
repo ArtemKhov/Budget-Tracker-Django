@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'budget_app.apps.BudgetAppConfig',
     'authentication.apps.AuthenticationConfig',
     'userpreferences.apps.UserpreferencesConfig',
+    'userincome.apps.UserincomeConfig',
 ]
 
 MIDDLEWARE = [
