@@ -1,0 +1,15 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block branding %}
+<h1 id="head" class="admin-header">
+    <img src="{% static 'img/budget_admin_icon.png' %}" alt="budget_admin_icon" width="35" height="35"/>
+    Budget Tracker
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static '/css/admin/admin.css' %}">
+{% endblock %}

@@ -1,0 +1,36 @@
+.admin-header {
+    margin: 0px;
+}
+
+#header {
+    background: #2A3663;
+    color: #FFF;
+}
+
+div.breadcrumbs {
+    background: #4A628A;
+    color: var(--breadcrumbs-fg);
+}
+
+
+input[type=button], .submit-row input {
+    width: 100%;
+    background: #2A3663;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 0.8125rem;
+    text-align: left;
+    background: #2A3663;
+    color: var(--header-link-color);
+}
+
+.paginator a:link, .paginator a:visited {
+    padding: 2px 6px;
+    background: #2A3663;
+    text-decoration: none;
+    color: var(--button-fg);
+}

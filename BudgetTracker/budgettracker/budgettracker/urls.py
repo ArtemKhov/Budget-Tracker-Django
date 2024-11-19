@@ -8,3 +8,6 @@ urlpatterns = [
     path('preferences/', include('userpreferences.urls')),
     path('income/', include('userincome.urls')),
 ]
+
+admin.site.site_header = 'Budget Tracker'
+admin.site.index_title = 'Budget Tracker admin panel'
