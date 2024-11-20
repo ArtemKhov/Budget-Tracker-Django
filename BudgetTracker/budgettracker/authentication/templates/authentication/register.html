@@ -51,6 +51,10 @@
                         <input type="submit" value="Register" class="btn btn-block btn-primary submit-btn"/>
                     </div>
                 </form>
+                <div class="container">
+                    <span class="text-lead lead fs-6">Have an account?</span><a class="user-login mx-2" href="{% url 'auth:login' %}">Login</a><br>
+                    <span class="text-lead lead fs-6">Forgot Password?</span><a class="user-login mx-2" href="{% url 'auth:reset-password' %}">Reset password</a>
+                </div>
             </div>
         </div>
     </div>

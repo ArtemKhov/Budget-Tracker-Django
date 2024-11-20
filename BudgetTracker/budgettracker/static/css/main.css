@@ -109,3 +109,7 @@
 .table-head {
     cursor: pointer;
 }
+
+.user-login {
+    font-size: 15px;
+}

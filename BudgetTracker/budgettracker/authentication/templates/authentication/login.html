@@ -18,14 +18,14 @@
                     {% csrf_token %}
 
                     {% include 'includes/_messages.html' %}
-                    <div class="form-group py-2">
+                    <div class="form-group py-1">
                         <input type="text"
                                name="username"
                                placeholder="Username"
                                id="usernameField"
                                class="form-control form-control-sm"
                                value="{{ fieldValues.username }}"/>
-
+                    </div>
                     <div class="form-group py-3 mb-2">
                         <input type="password"
                                name="password"
@@ -38,6 +38,10 @@
                         <input type="submit" value="Login" class="btn btn-block btn-primary submit-btn"/>
                     </div>
                 </form>
+                <div class="container">
+                    <span class="text-lead lead fs-6">Don't have an account?</span><a class="user-login mx-2" href="{% url 'auth:register' %}">Register</a><br>
+                    <span class="text-lead lead fs-6">Forgot Password?</span><a class="user-login mx-2" href="{% url 'auth:reset-password' %}">Reset password</a>
+                </div>
             </div>
         </div>
     </div>

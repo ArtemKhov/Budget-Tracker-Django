@@ -12,4 +12,6 @@ urlpatterns = [
     path('validate-username/', csrf_exempt(views.UsernameValidationView.as_view()), name='validate-username'),
     path('validate-email/', csrf_exempt(views.EmailValidationView.as_view()), name='validate-email'),
     path('activate/<uidb64>/<token>', views.VerificationView.as_view(), name='activate'),
+    path('request-reset-link/', views.RequestPasswordResetEmail.as_view(), name='reset-password'),
+    path('set-new-password/<uidb64>/<token>', views.CompletePasswordReset.as_view(), name='reset-user-password'),
 ]
