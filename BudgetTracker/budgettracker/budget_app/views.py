@@ -8,6 +8,7 @@ from userpreferences.models import UserPreference
 from budget_app.models import Category, Expense
 from utils import data_mixin
 import json
+import datetime
 
 @login_required(login_url='auth:login')
 def index(request):
@@ -123,6 +124,34 @@ def search_expenses(request):
                     | Expense.objects.filter(category__icontains=search_str, owner=request.user))
         data = expenses.values()
         return JsonResponse(list(data), safe=False)
+
+def expense_category_summary(request):
+    today_date = datetime.date.today()
+    six_month_ago = today_date - datetime.timedelta(days=30*6)
+    expenses = Expense.objects.filter(owner=request.user, date__gte=six_month_ago, date__lte=today_date)
+    final_rep = {}
+
+    def get_category(expense):
+        return expense.category
+    category_list = list(set(map(get_category, expenses)))
+
+    def get_expense_category_amount(category):
+        amount = 0
+        filtered_by_category = expenses.filter(category=category)
+        for item in filtered_by_category:
+            amount += item.amount
+        return amount
+
+    for expense in expenses:
+        for category in category_list:
+            final_rep[category] = get_expense_category_amount(category)
+
+    return JsonResponse({"expense_category_data": final_rep}, safe=False)
+
+def stats_view(request):
+    context = data_mixin.extra_context
+    context['title'] = 'Expenses Summary'
+    return render(request, 'budget_app/stats.html', context)
 
 
 

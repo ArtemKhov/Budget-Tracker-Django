@@ -8,7 +8,7 @@ sidebar_main = [{'title': "Dashboard", 'url_name': 'home'},
         {'title': "Income", 'url_name': 'income'},
 ]
 
-sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'home'},
+sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'stats'},
         {'title': "Income Summary", 'url_name': 'home'},
 ]
 
