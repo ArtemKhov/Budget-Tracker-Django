@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from userpreferences.models import UserPreference
 from budget_app.models import Category, Expense
 from utils import data_mixin
 import json
 import datetime
+import csv
 
 @login_required(login_url='auth:login')
 def index(request):
@@ -152,6 +153,20 @@ def stats_view(request):
     context = data_mixin.extra_context
     context['title'] = 'Expenses Summary'
     return render(request, 'budget_app/stats.html', context)
+
+def export_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename=Expenses {datetime.datetime.now().strftime("%Y-%m-%d")}.csv'
+
+    writer = csv.writer(response)
+    writer.writerow(['Amount', 'Description', 'Category', 'Date'])
+
+    expenses = Expense.objects.filter(owner=request.user)
+
+    for expense in expenses:
+        writer.writerow([expense.amount, expense.description, expense.category, expense.date])
+
+    return response
 
 
 

@@ -24,7 +24,9 @@
         {% include 'includes/_messages.html' %}
         {% if expenses.count %}
         <div class="row">
-            <div class="col-md-8"></div>
+            <div class="col-md-8">
+                <a href="{% url 'export-csv' %}" class="btn btn-secondary">Export CSV</a>
+            </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <input type="text" class="form-control" id="searchField" placeholder="Search">
