@@ -113,3 +113,13 @@
 .user-login {
     font-size: 15px;
 }
+
+.logo {
+    width: 34;
+    height: 34;
+    margin: 2px;
+}
+
+.navbar-brand {
+    padding-bottom: 5px !important;
+}
