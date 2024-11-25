@@ -15,6 +15,7 @@ from validate_email import validate_email
 import threading
 
 from authentication.utils import token_generator
+from utils import DataMixin
 
 class EmailThread(threading.Thread):
 
