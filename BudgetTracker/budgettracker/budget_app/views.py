@@ -12,6 +12,7 @@ import json
 import datetime
 import csv
 
+
 @login_required(login_url='auth:login')
 def index(request):
     categories = Category.objects.all()
@@ -150,6 +151,8 @@ def expense_category_summary(request):
 
     return JsonResponse({"expense_category_data": final_rep}, safe=False)
 
+
+
 def stats_view(request):
     context = data_mixin.extra_context
     context['title'] = 'Expenses Summary'
@@ -194,7 +197,6 @@ def export_excel(request):
     wb.save(response)
 
     return response
-
 
 
 

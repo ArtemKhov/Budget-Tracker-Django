@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.contrib import messages
@@ -126,3 +127,31 @@ def search_income(request):
                     | UserIncome.objects.filter(source__icontains=search_str, owner=request.user))
         data = income.values()
         return JsonResponse(list(data), safe=False)
+
+def income_source_summary(request):
+    today_date = datetime.date.today()
+    six_month_ago = today_date - datetime.timedelta(days=30*6)
+    sources = UserIncome.objects.filter(owner=request.user, date__gte=six_month_ago, date__lte=today_date)
+    final_rep = {}
+
+    def get_source(source):
+        return source.source
+    source_list = list(set(map(get_source, sources)))
+
+    def get_income_source_amount(source):
+        amount = 0
+        filtered_by_source = sources.filter(source=source)
+        for item in filtered_by_source:
+            amount += item.amount
+        return amount
+
+    for source in sources:
+        for category in source_list:
+            final_rep[category] = get_income_source_amount(category)
+
+    return JsonResponse({"income_source_data": final_rep}, safe=False)
+
+def stats_view(request):
+    context = data_mixin.extra_context
+    context['title'] = 'Income Summary'
+    return render(request, 'userincome/stats.html', context)
