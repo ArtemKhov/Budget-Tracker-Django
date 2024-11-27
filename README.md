@@ -105,6 +105,10 @@ Open up a browser and visit: http://127.0.0.1:8000/ , the you will see the site.
 Further you can fill the site with data at your discretion to understand how everything looks like (admin panel can also help) or you can see the approximate filling of the site in the folder Demo.
 
 ## Demo
+![expenses](https://github.com/user-attachments/assets/9a5626f9-433c-4437-b71a-170b7e0fa968)
+![expenses_chart](https://github.com/user-attachments/assets/7759a703-cb3f-4ffc-bb20-91b591f75538)
+![login](https://github.com/user-attachments/assets/6304ebcf-b127-41d1-a043-5376c44164b4)
+![currency_change](https://github.com/user-attachments/assets/a0ee375f-4a73-4e1f-ba7d-c4875a910593)
 
 ## License
 
