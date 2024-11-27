@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render
 
 from utils import data_mixin
+
 from .models import UserPreference
 
 

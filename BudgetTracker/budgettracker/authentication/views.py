@@ -1,21 +1,21 @@
-from django.core.mail import EmailMessage
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy, reverse
-from django.views import View
-from django.http import JsonResponse
-from django.contrib.auth.models import User
-from django.contrib import messages, auth
-from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
 import json
-from validate_email import validate_email
 import threading
 
+from django.contrib import auth, messages
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.utils.encoding import (force_bytes, force_str)
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.views import View
+from validate_email import validate_email
+
 from authentication.utils import token_generator
-from utils import DataMixin
+
 
 class EmailThread(threading.Thread):
 

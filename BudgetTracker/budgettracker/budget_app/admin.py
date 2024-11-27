@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Expense, Category
+
+from .models import Category, Expense
+
 
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):

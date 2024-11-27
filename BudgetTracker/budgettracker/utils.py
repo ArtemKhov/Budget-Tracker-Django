@@ -1,10 +1,9 @@
-import os
 import json
+import os
 
 from django.conf import settings
 
-sidebar_main = [{'title': "Dashboard", 'url_name': 'home'},
-        {'title': "Expenses", 'url_name': 'home'},
+sidebar_main = [{'title': "Expenses", 'url_name': 'home'},
         {'title': "Income", 'url_name': 'income'},
 ]
 
@@ -12,8 +11,7 @@ sidebar_summary = [{'title': "Expenses Summary", 'url_name': 'expenses-stats'},
         {'title': "Income Summary", 'url_name': 'income-stats'},
 ]
 
-sidebar_settings = [{'title': "General", 'url_name': 'userpreferences'},
-        {'title': "Account", 'url_name': 'home'},
+sidebar_settings = [{'title': "Change currency type", 'url_name': 'userpreferences'},
 ]
 
 def load_currency_data():

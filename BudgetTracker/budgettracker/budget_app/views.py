@@ -1,16 +1,17 @@
-import xlwt
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.core.paginator import Paginator
-from django.http import JsonResponse, HttpResponse
-
-from userpreferences.models import UserPreference
-from budget_app.models import Category, Expense
-from utils import data_mixin
-import json
-import datetime
 import csv
+import datetime
+import json
+import xlwt
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect, render
+
+from budget_app.models import Category, Expense
+from userpreferences.models import UserPreference
+from utils import data_mixin
 
 
 @login_required(login_url='auth:login')
@@ -150,8 +151,6 @@ def expense_category_summary(request):
             final_rep[category] = get_expense_category_amount(category)
 
     return JsonResponse({"expense_category_data": final_rep}, safe=False)
-
-
 
 def stats_view(request):
     context = data_mixin.extra_context

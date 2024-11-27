@@ -1,7 +1,7 @@
-from django.contrib import messages
-
 import os
 from pathlib import Path
+
+from django.contrib import messages
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'userpreferences.apps.UserpreferencesConfig',
     'userincome.apps.UserincomeConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -59,12 +58,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'budgettracker.wsgi.application'
-
-
-AUTHENTICATION_BACKENDS = [
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
-]
 
 
 DATABASES = {
@@ -114,8 +107,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
-
-# SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 # SMTP Email Protocol
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
