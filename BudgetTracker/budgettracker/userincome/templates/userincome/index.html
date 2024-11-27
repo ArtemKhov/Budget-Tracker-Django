@@ -23,15 +23,20 @@
     <div class="container">
         {% include 'includes/_messages.html' %}
         {% if income.count %}
-        <div class="row">
-            <div class="col-md-8"></div>
+        <div class="row display-flex justify-content-end">
+            <div class="col-md-2">
+                <a href="{% url 'export-excel' %}" class="btn btn-success">Export to Excel</a>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'export-csv' %}" class="btn btn-info">Export to CSV</a>
+            </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <input type="text" class="form-control" id="searchField" placeholder="Search">
                 </div>
             </div>
         </div>
-
+        <hr>
         <div class="app-table">
             <table class="table table-stripped table-hover">
                 <thead class="table-head">
