@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'userpreferences.apps.UserpreferencesConfig',
     'userincome.apps.UserincomeConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'budgettracker.wsgi.application'
+
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+]
 
 
 DATABASES = {
@@ -107,6 +114,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+# SOCIAL_AUTH_JSONFIELD_ENABLED = True
 
 # SMTP Email Protocol
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

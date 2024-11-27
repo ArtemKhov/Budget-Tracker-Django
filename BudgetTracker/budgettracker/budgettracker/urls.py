@@ -7,6 +7,7 @@ urlpatterns = [
     path('auth/', include('authentication.urls', namespace='auth')),
     path('preferences/', include('userpreferences.urls')),
     path('income/', include('userincome.urls')),
+
 ]
 
 admin.site.site_header = 'Budget Tracker'
