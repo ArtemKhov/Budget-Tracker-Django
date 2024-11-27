@@ -1,50 +1,34 @@
-# Django Favourite Books site 
+# Budget Tracker (Django)
 
-A website that allows you to save your favorite books and leave a small review of them. Written with `python3.11`, `Django5.1.1` and uses modern `HTML/CSS/JS`.
+Web site allowing you to conveniently add/save/modify and track your income and expenses. Written with `python3.11`, `Django5.1.3` and uses modern `HTML/CSS/Bootstrap/JS`.
 
 ## Main Features:
 
-- Add books functionality (Title / Description / Publishing state / Select Genres / Select book Image)
-- Edit / Delete books
-- Comment feature (including likes on comments / ability to delete comments)
-- Filtering books by Genres (tags) (different filtering on the page with user's books and on the page with all books)
-- Login/Registration feature (including 'Password reset' feature)
-- OAuth Login via `Google / GitHub`
-- Profile (including 'Change password' feature)
-- `SMPT` Google-server (ability to receive feedback by E-mail / 'Password reset' by E-mail)
-- Captcha
-- Pagination (Books page / Comments section)
-- Access to certain pages and actions only for authorized users or authors of the article.
-- Admin panel with additional functionality
+- Add Expenses / Income functionality (Amount / Description / Category / Income Source / Date)
+- Edit / Delete records
+- Search by keywords
+- Export data to Excel/CSV file
+- Sorting records by Amount / Description / Category / Income Source / Date
+- Login/Registration/Logout feature (including 'Password reset' feature and 'Email confirmation') with dynamic error handling
+- `SMPT` Google-server ('Password reset' by E-mail / Registration confirmation by Email)
+- Pagination
+- Summary charts (Expenses / Income)
+- Change currency type
+- Admin panel
 
 ### Tech Stack:
 
-**Main:**
-
 - `Python 3.11`
-- `Django 5.1.1`
+- `Django 5.1.3`
 - `PostgreSQL 16`
-
-**Additional:**
-- `django-debug-toolbar` - for more thorough debugging.
-- `ipython` - provides an improved interactive shell for Python that makes working with code much easier, combined with Django Shell Plus from Django Extensions, IPython provides autocomplete commands and saves command history for more productive work.
-- `django-extensions` - provides a set of useful commands and utilities that greatly extend the capabilities of the standard Django command set.
-- `django-unique-slugify` - the package automatically generates unique slugs for models.
-- `psycopg` and `psycopg-binary` - for correct working and connect PostgreSQL and Django
-- `django-simple-captcha` - for captcha
-
-**A few words about `HTML/CSS/JS`:**
-- A [free template](https://html5up.net/massively) was used, which was adapted and modified for the specifics of a site about favorite books.
-- [License](https://html5up.net/license) - the Creative Commons Attribution 3.0 License
-
-
-
+- `Bootstrap v5.3.3`
+- `HTML\CSS\JS`
 
 ## Installation:
 
 1) Create a directory and clone the repo in it:
 ```sh
-   git clone https://github.com/ArtemKhov/FavouriteBooks
+   git clone https://github.com/ArtemKhov/Budget-Tracker-Django
    ```
 2) Create your virtual environment:
 ```
@@ -60,9 +44,9 @@ pip install -r requirements.txt
 ```
 
 ### Configuration
-Most configurations are in `favouritebooks`->`favouritebooks`->`settings.py`.
+Most configurations are in `budgettracker`->`budgettracker`->`settings.py`.
 
-I set many `settings` configuration with my environment variables (such as: `SECRET_KEY`, `ALLOWED_HOSTS`, `DEBUG`, `OAUTH`, `PostgreSQL` and some email configuration parts) and they did **NOT** been submitted to the `GitHub`. You can change these in the code with your own configuration or just add them into your environment variables.
+I set many `settings` configuration with my environment variables (such as: `SECRET_KEY`, `ALLOWED_HOSTS`, `PostgreSQL` and some email configuration parts) and they did **NOT** been submitted to the `GitHub`. You can change these in the code with your own configuration or just add them into your environment variables.
 
 ## Run
 
@@ -78,7 +62,7 @@ I set many `settings` configuration with my environment variables (such as: `SEC
 
 ### Modify `settings.py`:
 
-Setup `favourite_books_site/favouritebooks/favouritebooks/settings.py` with PostgreSQL database settings:
+Setup `BudgetTracker/budgettracker/budgettracker/settings.py` with PostgreSQL database settings:
 
 ```python
 DATABASES = {
@@ -119,6 +103,8 @@ Execute: `python manage.py runserver`
 Open up a browser and visit: http://127.0.0.1:8000/ , the you will see the site.
 
 Further you can fill the site with data at your discretion to understand how everything looks like (admin panel can also help) or you can see the approximate filling of the site in the folder Demo.
+
+## Demo
 
 ## License
 
